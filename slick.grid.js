@@ -15,17 +15,22 @@
  *     or data associated with any cell/row DOM nodes.  Cell editors must make sure they implement .destroy()
  *     and do proper cleanup.
  */
+(function (root, factory) {
+    if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery', 'jquery.event.drag', 'require', './slick.core', './slick.'], factory);
+    } else {
+        // Browser globals
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function (jQuery, drag, require) {
 
-// make sure required JavaScript modules are loaded
-if (typeof jQuery === "undefined") {
-  throw "SlickGrid requires jquery module to be loaded";
-}
-if (!jQuery.fn.drag) {
-  throw "SlickGrid requires jquery.event.drag module to be loaded";
-}
-if (typeof Slick === "undefined") {
-  throw "slick.core.js not loaded";
-}
+    //require('slick.core');
 
 
 (function ($) {
@@ -3271,3 +3276,6 @@ if (typeof Slick === "undefined") {
     init();
   }
 }(jQuery));
+
+    return $;
+}));

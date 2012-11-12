@@ -3,7 +3,20 @@
  * @module Formatters
  * @namespace Slick
  */
-
+(function (root, factory) {
+    if (typeof exports === 'object') {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like enviroments that support module.exports,
+        // like Node.
+        module.exports = factory(require('jquery'));
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else {
+        // Browser globals
+        root.returnExports = factory(root.jQuery);
+    }
+}(this, function (jQuery) {
 (function ($) {
   // register namespace
   $.extend(true, window, {
@@ -53,3 +66,6 @@
     return value ? "<img src='../images/tick.png'>" : "";
   }
 })(jQuery);
+
+
+}));
