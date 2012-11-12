@@ -12,6 +12,8 @@
         root.returnExports = factory(root.jQuery);
     }
 }(this, function (jQuery) {
+
+
 (function ($) {
   // register namespace
   $.extend(true, window, {
@@ -200,4 +202,5 @@
   }
 })(jQuery);
 
+    return jQuery;
 }));

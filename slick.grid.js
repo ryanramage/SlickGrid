@@ -23,7 +23,7 @@
         module.exports = factory(require('jquery'));
     } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['jquery', 'jquery.event.drag', 'require', './slick.core', './slick.'], factory);
+        define(['jquery', 'jquery.event.drag', 'require', './slick.core'], factory);
     } else {
         // Browser globals
         root.returnExports = factory(root.jQuery);
